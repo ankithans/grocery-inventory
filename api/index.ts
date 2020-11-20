@@ -1,15 +1,11 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import helmet from "helmet";
 import bodyParser from "body-parser";
 import connectDB from "./services/database";
 
 const main = async () => {
   dotenv.config();
   const app = express();
-
-  // Using helmet to secure the application
-  if (process.env.NODE_ENV === "production") app.use(helmet());
 
   // connectDB
   connectDB();
