@@ -16,6 +16,8 @@ const main = async () => {
 
   // Define routes
   app.get("/", (_req: Request, res: Response) => {
+    console.log("server up");
+
     return res.json({
       message: "Server is up and running",
     });
@@ -24,7 +26,7 @@ const main = async () => {
   // port
   const PORT = process.env.PORT || 5000;
 
-  app.listen(4000, () => {
+  app.listen(PORT, () => {
     console.log(`server started on http://localhost:${PORT}`);
   });
 };
