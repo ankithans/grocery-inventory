@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import bodyParser from "body-parser";
@@ -9,9 +8,8 @@ const main = async () => {
   dotenv.config();
   const app = express();
 
-  // Using helmet and CORS to secure the application
+  // Using helmet to secure the application
   if (process.env.NODE_ENV === "production") app.use(helmet());
-  app.use(cors());
 
   // connectDB
   connectDB();
