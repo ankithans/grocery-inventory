@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import connectDB from "./services/database";
 
+import userRoute from "./routes/user";
+
 const main = async () => {
   dotenv.config();
   const app = express();
@@ -22,6 +24,8 @@ const main = async () => {
       message: "Server is up and running",
     });
   });
+
+  app.use("/api/v1/auth", userRoute);
 
   // port
   const PORT = process.env.PORT || 5000;
