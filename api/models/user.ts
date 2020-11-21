@@ -6,7 +6,7 @@ export interface IUser extends Document {
     {
       image: string;
       finished: boolean;
-      tags: [];
+      tag: string;
     }
   ];
 }
@@ -20,7 +20,7 @@ const UserSchema: Schema = new Schema({
     {
       image: String,
       finished: Boolean,
-      tags: [],
+      tag: String,
     },
   ],
 });
