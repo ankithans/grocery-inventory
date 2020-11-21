@@ -7,6 +7,7 @@ export interface IUser extends Document {
       image: string;
       finished: boolean;
       tag: string;
+      _id: mongoose.Types.ObjectId;
     }
   ];
 }
@@ -18,6 +19,7 @@ const UserSchema: Schema = new Schema({
   },
   groceries: [
     {
+      _id: mongoose.Types.ObjectId,
       image: String,
       finished: Boolean,
       tag: String,
