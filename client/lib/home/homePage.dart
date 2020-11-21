@@ -6,38 +6,35 @@ import 'package:client/constants.dart';
 import 'package:client/home/homePageServices.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-
   File image;
   final picker = ImagePicker();
 
   Future getCameraImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
 
-    if(pickedFile != null){
+    if (pickedFile != null) {
       setState(() {
         image = File(pickedFile.path);
       });
     }
-
   }
 
   Future getGalleryImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
-    if(pickedFile != null){
+    if (pickedFile != null) {
       setState(() {
         image = File(pickedFile.path);
       });
     }
-
   }
-
 
   Future getImage(context) async {
     return showDialog(
@@ -65,31 +62,60 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: titleAppbar(
-        context, 
-        title: 'Home',
-        actions: [
-          FlatButton(
-            child: Icon(Icons.exit_to_app, color: backgroundColor,),
-            onPressed: () async {
-              await AuthService().signOut();
-              Navigator.pushReplacement(context, new MaterialPageRoute(builder: (BuildContext context) => new LoginPage()));
-            },
-          ),
-        ]
-      ),
+      // appBar: titleAppbar(
+      //   context,
+      //   title: 'Home',
+      //   actions: [
+      //     FlatButton(
+      //       child: Icon(Icons.exit_to_app, color: backgroundColor,),
+      //       onPressed: () async {
+      //         await AuthService().signOut();
+      //         Navigator.pushReplacement(context, new MaterialPageRoute(builder: (BuildContext context) => new LoginPage()));
+      //       },
+      //     ),
+      //   ]
+      // ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'snapPic',
-        child: Icon(Icons.camera_alt_outlined, color: backgroundColor,),
+        child: Icon(
+          Icons.camera_alt_outlined,
+          color: backgroundColor,
+        ),
         backgroundColor: primaryColor,
         onPressed: () {
           getImage(context);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            title: Text('Home'),
+            floating: true,
+            actions: [
+              FlatButton(
+                child: Icon(
+                  Icons.exit_to_app,
+                  color: backgroundColor,
+                ),
+                onPressed: () async {
+                  await AuthService().signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    new MaterialPageRoute(
+                      builder: (BuildContext context) => new LoginPage(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
