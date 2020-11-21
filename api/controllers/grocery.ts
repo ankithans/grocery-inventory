@@ -148,6 +148,7 @@ export const updateQuantity = async (
       console.log(user.groceries[i]);
       user.groceries[i].quantity = quantity;
       if (quantity == 0) user.groceries[i].finished = true;
+      if (quantity > 0) user.groceries[i].finished = false;
       break;
     }
   }
