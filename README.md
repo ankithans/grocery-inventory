@@ -43,13 +43,13 @@
 
 ##### 🌟 Frontend
 - Flutter for cross-platform application  
-- [dio](https://pub.dev/packages/http)
-- [firebase](https://pub.dev/packages/firebase_messaging)
-- [shared_preferences](https://pub.dev/packages/flutter_secure_storage)
-- [path](https://pub.dev/packages/flutter_local_notifications)
-- [image_picker](https://pub.dev/packages/workmanager)
-- [provider](https://pub.dev/packages/maps_launcher)
-- [google_sign_in]()
+- [dio](https://pub.dev/packages/dio)
+- [firebase](https://pub.dev/packages/firebase)
+- [shared_preferences](https://pub.dev/packages/shared_preferences)
+- [path](https://pub.dev/packages/path)
+- [image_picker](https://pub.dev/packages/image_picker)
+- [provider](https://pub.dev/packages/provider)
+- [google_sign_in](https://pub.dev/packages/google_sign_in)
 
 ## made with 💕 by: 
 - [Ankit Hans](https://github.com/ankithans)
