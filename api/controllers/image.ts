@@ -67,7 +67,8 @@ export const uploadImage = async (
   // console.log(availableGrocery);
 
   var isInInventory = false;
-  var index = -1;
+  var index = 0;
+  var t;
 
   for (var i = 0; i < displayTags.length; i++) {
     if (
@@ -77,32 +78,39 @@ export const uploadImage = async (
     ) {
       isInInventory = true;
       index = i;
+      t = displayTags[i];
+      console.log(t);
       break;
     } else {
       isInInventory = false;
     }
     // console.log(isInInventory);
   }
-  console.log(availableGrocery[index].finished);
+  // if (availableGrocery[index] != undefined)
+  for (var i = 0; i < availableGrocery.length; i++) {
+    if (availableGrocery[i].tag == t) {
+      index = i;
+    }
+  }
+  console.log(index);
+
+  // console.log(availableGrocery[index].finished);
 
   if (!isInInventory) {
-    // console.log(availableGrocery[i].finished);
-
-    // if (availableGrocery[i].finished) {
-    return res.json({
-      success: true,
-      url: url,
-      tags: displayTags,
-    });
-    // }
-  }
-  if (availableGrocery[index].finished == true) {
     return res.json({
       success: true,
       url: url,
       tags: displayTags,
     });
   }
+  if (availableGrocery[index] != undefined)
+    if (availableGrocery[index].finished == true) {
+      return res.json({
+        success: true,
+        url: url,
+        tags: displayTags,
+      });
+    }
 
   return res.status(409).json({
     success: false,
