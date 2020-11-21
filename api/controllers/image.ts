@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/user";
 import googleVision from "../services/cloud_vision";
+import mongoose from "mongoose";
+var id = mongoose.Types.ObjectId();
 
 export const uploadImage = async (
   req: Request,
@@ -155,6 +157,7 @@ export const selectTags = async (req: Request, res: Response): Promise<any> => {
   const { tag, url } = req.body;
 
   const groceryObject: any = {
+    _id: id,
     image: url,
     finished: false,
     tag: tag,
