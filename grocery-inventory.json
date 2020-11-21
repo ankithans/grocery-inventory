@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "grocery-inventory",
+  "private_key_id": "2d6ba6951e50cedc09042d1061b82eb37be21185",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDXxPKYkmeXlQ6R\njkeRsSONqTaACAKWVw9Ls85urPdicjWpk+WTHP/xaNOiFYVeMXMmVZqRKuNIQet9\nmJs5iM5Qfpfem09THsd9hJWPei3I/K7w/gRbmUKX5/D1h1nZSr9YU16OdZ9pUfLG\nLd8pjj7+N67AiLSSFellAYJBqkuZLIG9PSLFVFjVc6j3Qun3OpqKJPM39noNvmrD\nSI1JNwSG9MqMpG7M4AlMBEwo5CxYi51RMUYZl595/EHblF26mINUoSJd+m2QJNV5\n5l+E06BsDrPm1dIt1O2VOoh+BSBC+tGY1/M/cIMi75utFsdWfbIRSEhP0/h5T8+1\nvI+cBh9NAgMBAAECggEAIv/6xSZ8gNFoOVKtx9OG26AO6+JAvy/UlphOXFQY1eKG\nU2Fe/EfYOYniSHi6t06Iqfd5WOJu10YAI9GpHkJTiymZy32AdtB3liP3Wbx9KEza\nuNNPlCcubvMr+jvwJmfyVWrCnBO23c/x9FU1DanaDIUuRuN1/Ptqbly6CxpLZIdQ\nLVphfp2JFXixd7A+uAdMN1XIXkFrl8U5kWLsQDqoe8cxNcU/zZSlRYYdsI5hYCSF\nwKdDVNT/63UnOtnJWb7uo06Q1fLVLQlZrHSHZ5YRlejKOSuZ5wiCsYHrWrtIMyTl\ngBKaHitrN0tSNpZcYrZKL5ezkSAjQnkXIOL47ukcmQKBgQDslmbMkoA49YUPWsyC\nJyecL/YXQLooUY9+NuYBD7PTI0XyOPE61pBNct6H56QeHUWETZxE+0iONdNneFeV\nDJROFXQR1SYKRR3R9kVgTjjVU75tvktWYeQAKGBbpeyNsKdMjeETNFIZlavhFIwM\nWXihV+g+0NZcwOl/+et9YHC1JQKBgQDpeUDc8cE42kjMFoZAy3r2ujfrvnUfytdN\niELjzczKqTgKkSfqjI35k3WmhcubbKYFbozDUvRFCRxqrOatWNEXuUAMkRjxl2NM\npzKi/fRdZOT4uHc9tNNL1ayr2BlFxdPNW+wpF8dOyV0xyAi3oJYaJg/TPtuYtR9J\nsiVMlYNtCQKBgQCgiElGpF2WyJm52n2MDu9knnKYQpZOR1FbbfrRW4tER9ntSs/8\ngZy2wKvYgcgtmuURqevQLsWDoWhJ/DFJdJipBwuUEhJWw6FBV56pg0ozDjjXlFjg\nS1n+9Wa0qTiCyAws+NRxSH4w2AshleSVeJxOtixjeycJFukZqkYs86RmdQKBgQCm\nMy/OWLagvxsFVZ96bp95FbULN4hu+llsEuzy96SqO+3t78kHecjzelpNEX+Qg7Zn\ntXu068+BeWvmMHEBw3ENP01t5Lhp+sewYHF2f+u9tD4fJEmV/qxPlqsVpX7QIXSW\nArLJyeiSmFukPW6fMUzJDoFDcsKmIYFFV/CfZOuq6QKBgDKl7vM4bLhqBmxTo/0s\nZ92gjtiHW/BEwCfrxgagE2FljRh1mIcJBmwxAQe51oG5G1y07QocZbrAswN6Es+L\nLbXoSzMCIcfnxafmJWyWhTHSNRfDiSSgPlwnLGCpnSA/+VUf3ugm7lCjBn1O3Wzy\nnr/L1FIRYPFQ19i0ufzPi4gC\n-----END PRIVATE KEY-----\n",
+  "client_email": "ankit-821@grocery-inventory.iam.gserviceaccount.com",
+  "client_id": "110367508245605865802",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ankit-821%40grocery-inventory.iam.gserviceaccount.com"
+}
