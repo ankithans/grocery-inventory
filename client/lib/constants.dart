@@ -11,6 +11,9 @@ AppBar titleAppbar(context,
     bool centerTitle = false,
     Widget leading}) {
   return AppBar(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
     backgroundColor: primaryColor,
     elevation: 0,
     centerTitle: centerTitle,

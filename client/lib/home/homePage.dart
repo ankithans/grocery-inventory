@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:client/auth/login/authService.dart';
 import 'package:client/auth/login/login_ui.dart';
 import 'package:client/constants.dart';
+import 'package:client/displaySuggestions/displaySuggestions.dart';
 import 'package:client/home/homePageServices.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-  Future getImage(context) async {
+  Future getImage(BuildContext context) async {
     return showDialog(
       context: context,
       barrierDismissible: true,
@@ -52,12 +53,16 @@ class _HomePageState extends State<HomePage> {
               child: Text('Camera'),
               onPressed: () async {
                 await getCameraImage();
+                Navigator.pop(context);
+                Navigator.push(context, new MaterialPageRoute(builder: (context) => new DisplaySuggestionsPage(image: image),));
               },
             ),
             FlatButton(
               child: Text('Gallery'),
               onPressed: () async {
                 await getGalleryImage();
+                Navigator.pop(context);
+                Navigator.push(context, new MaterialPageRoute(builder: (context) => new DisplaySuggestionsPage(image: image),));
               },
             ),
           ],
@@ -67,7 +72,9 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+    final GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: _scaffoldKey,
       appBar: titleAppbar(
         context, 
         title: 'Home',
@@ -86,7 +93,7 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.camera_alt_outlined, color: backgroundColor,),
         backgroundColor: primaryColor,
         onPressed: () {
-          getImage(context);
+          getImage(_scaffoldKey.currentContext);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
