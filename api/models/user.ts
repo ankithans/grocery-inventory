@@ -5,6 +5,7 @@ export interface IUser extends Document {
   groceries: [
     {
       image: string;
+      quantity: Number;
       finished: boolean;
       tag: string;
       _id: mongoose.Types.ObjectId;
@@ -21,6 +22,7 @@ const UserSchema: Schema = new Schema({
     {
       _id: mongoose.Types.ObjectId,
       image: String,
+      quantity: Number,
       finished: Boolean,
       tag: String,
     },

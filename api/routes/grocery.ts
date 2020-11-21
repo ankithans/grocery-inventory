@@ -1,4 +1,8 @@
-import { getGroceries, markAsFinish } from "../controllers/grocery";
+import {
+  getGroceries,
+  markAsFinish,
+  updateQuantity,
+} from "../controllers/grocery";
 import { Router } from "express";
 
 const router: Router = Router();
@@ -12,5 +16,10 @@ router.get("/get", getGroceries);
 // @dsc         mark item as finished
 // @access      Private
 router.post("/finish", markAsFinish);
+
+// @route       GET /api/v1/grocery/quantity
+// @dsc         update quantity
+// @access      Private
+router.post("/quantity", updateQuantity);
 
 export default router;
