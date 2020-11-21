@@ -88,7 +88,7 @@ export const markAsFinish = async (
   // console.log(groceries[0]._id);
 
   for (var i = 0; i < user.groceries.length; i++) {
-    if (user.groceries[i]._id.toString() == gid) {
+    if (user.groceries[i]._id == gid) {
       console.log(user.groceries[i]);
       user.groceries[i].finished = !user.groceries[i].finished;
       break;
