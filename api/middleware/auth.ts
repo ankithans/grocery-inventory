@@ -1,15 +1,18 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
+import { IUser } from "../models/user";
 
 export interface IGetUserAuthInfoRequest extends Request {
-  user: any;
+  user: IUser;
 }
 
-export default () => async (
+export default async (
   req: IGetUserAuthInfoRequest,
   res: Response,
   next: NextFunction
 ): Promise<any> => {
+  console.log("abc");
+
   // Get the token form header
   const token = req.header("x-auth-token");
 

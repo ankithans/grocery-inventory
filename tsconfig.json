@@ -26,6 +26,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "checkJs": false,
   },
   "exclude": [
     "./client",

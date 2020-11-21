@@ -2,7 +2,13 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface IUser extends Document {
   name: string;
-  groceries: {};
+  groceries: [
+    {
+      image: string;
+      finished: boolean;
+      tags: [];
+    }
+  ];
 }
 
 const UserSchema: Schema = new Schema({
@@ -10,7 +16,13 @@ const UserSchema: Schema = new Schema({
     type: String,
     required: true,
   },
-  groceries: {},
+  groceries: [
+    {
+      image: String,
+      finished: Boolean,
+      tags: [],
+    },
+  ],
 });
 
 export default mongoose.model<IUser>("User", UserSchema);

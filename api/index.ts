@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import connectDB from "./services/database";
 
 import userRoute from "./routes/user";
+import imageRoute from "./routes/image";
 
 const main = async () => {
   dotenv.config();
@@ -18,14 +19,13 @@ const main = async () => {
 
   // Define routes
   app.get("/", (_req: Request, res: Response) => {
-    console.log("server up");
-
     return res.json({
       message: "Server is up and running",
     });
   });
 
   app.use("/api/v1/auth", userRoute);
+  app.use("/api/v1/image", imageRoute);
 
   // port
   const PORT = process.env.PORT || 5000;

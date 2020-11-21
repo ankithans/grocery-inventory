@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^5.5.0",
+    "@google-cloud/vision": "^2.1.2",
     "@types/uuid": "^8.3.0",
     "aws-sdk": "^2.796.0",
     "body-parser": "^1.19.0",
