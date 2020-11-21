@@ -7,12 +7,14 @@ import 'package:client/displaySuggestions/displaySuggestions.dart';
 import 'package:client/home/homePageServices.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
 
   File image;
   final picker = ImagePicker();
@@ -20,29 +22,26 @@ class _HomePageState extends State<HomePage> {
   Future getCameraImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
 
-    if(pickedFile != null){
+    if (pickedFile != null) {
       setState(() {
         image = File(pickedFile.path);
       });
     }
-
   }
 
   Future getGalleryImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
-    if(pickedFile != null){
+    if (pickedFile != null) {
       setState(() {
         image = File(pickedFile.path);
       });
     }
-
   }
-
 
   Future getImage(BuildContext context) async {
     return showDialog(
-      context: context,
+      context: _scaffoldKey.currentContext,
       barrierDismissible: true,
       builder: (context) {
         return AlertDialog(
@@ -54,7 +53,12 @@ class _HomePageState extends State<HomePage> {
               onPressed: () async {
                 await getCameraImage();
                 Navigator.pop(context);
-                Navigator.push(context, new MaterialPageRoute(builder: (context) => new DisplaySuggestionsPage(image: image),));
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                      builder: (context) =>
+                          new DisplaySuggestionsPage(image: image),
+                    ));
               },
             ),
             FlatButton(
@@ -62,7 +66,12 @@ class _HomePageState extends State<HomePage> {
               onPressed: () async {
                 await getGalleryImage();
                 Navigator.pop(context);
-                Navigator.push(context, new MaterialPageRoute(builder: (context) => new DisplaySuggestionsPage(image: image),));
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                      builder: (context) =>
+                          new DisplaySuggestionsPage(image: image),
+                    ));
               },
             ),
           ],
@@ -70,27 +79,32 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
-    final GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldKey,
-      appBar: titleAppbar(
-        context, 
-        title: 'Home',
-        actions: [
-          FlatButton(
-            child: Icon(Icons.exit_to_app, color: backgroundColor,),
-            onPressed: () async {
-              await AuthService().signOut();
-              Navigator.pushReplacement(context, new MaterialPageRoute(builder: (BuildContext context) => new LoginPage()));
-            },
+      appBar: titleAppbar(context, title: 'Home', actions: [
+        FlatButton(
+          child: Icon(
+            Icons.exit_to_app,
+            color: backgroundColor,
           ),
-        ]
-      ),
+          onPressed: () async {
+            await AuthService().signOut();
+            Navigator.pushReplacement(
+                context,
+                new MaterialPageRoute(
+                    builder: (BuildContext context) => new LoginPage()));
+          },
+        ),
+      ]),
       floatingActionButton: FloatingActionButton(
         heroTag: 'snapPic',
-        child: Icon(Icons.camera_alt_outlined, color: backgroundColor,),
+        child: Icon(
+          Icons.camera_alt_outlined,
+          color: backgroundColor,
+        ),
         backgroundColor: primaryColor,
         onPressed: () {
           getImage(_scaffoldKey.currentContext);
