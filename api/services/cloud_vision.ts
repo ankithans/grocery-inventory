@@ -10,7 +10,6 @@ async function googleVision(image: string) {
   const [result] = await client.labelDetection(image);
 
   //   const labels = result.labelAnnotations;
-  console.log("Labels:");
   //   if (labels != null) labels.forEach((label) => console.log(label.description));
   return result;
 }

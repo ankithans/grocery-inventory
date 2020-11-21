@@ -56,7 +56,7 @@ export const uploadImage = async (
     labels.forEach((label: { description: any }) =>
       displayTags.push(label.description)
     );
-  console.log(displayTags);
+  // console.log(displayTags);
 
   const availableGrocery: any = [];
   const availableTags: any = [];
@@ -67,6 +67,7 @@ export const uploadImage = async (
   // console.log(availableGrocery);
 
   var isInInventory = false;
+  var index = -1;
 
   for (var i = 0; i < displayTags.length; i++) {
     if (
@@ -75,12 +76,15 @@ export const uploadImage = async (
       })
     ) {
       isInInventory = true;
+      index = i;
       break;
     } else {
       isInInventory = false;
     }
-    console.log(isInInventory);
+    // console.log(isInInventory);
   }
+  console.log(availableGrocery[index].finished);
+
   if (!isInInventory) {
     // console.log(availableGrocery[i].finished);
 
@@ -92,6 +96,14 @@ export const uploadImage = async (
     });
     // }
   }
+  if (availableGrocery[index].finished == true) {
+    return res.json({
+      success: true,
+      url: url,
+      tags: displayTags,
+    });
+  }
+
   return res.status(409).json({
     success: false,
     message: "already in you inventory",
