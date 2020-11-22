@@ -25,7 +25,7 @@
 
 ## 💻 samples:
 
-<img src="" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250" style="float:right"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250">
+<img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-003056.jpg" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-163926.jpg" width="250" style="float:right"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250">
 
 <img src="" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250" style="float:right"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250">
 
