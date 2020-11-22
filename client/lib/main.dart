@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
   void initState(){
     super.initState();
     token = getToken();
-    camera = initializeCamera();
+    //camera = initializeCamera();
   }
 
   @override
@@ -65,14 +65,10 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FutureBuilder(
-        future: camera,
-        builder: (context, snapshot) {
-          if(snapshot.hasData){
-            context.watch<CameraService>().addCamera(snapshot.data);
-            return FutureBuilder(
           future: token,
           builder: (context, snapshot) {
             if(snapshot.hasData){
+              print('Snapshot Data: ${snapshot.data}');
               context.watch<TokenService>().addToken(token: snapshot.data);
               if(snapshot.data != ''){
                 print('Home Page');
@@ -87,13 +83,7 @@ class _MyAppState extends State<MyApp> {
               return BlankPage();
             }
           },
-        );
-          }
-          else{
-            return BlankPage();
-          }
-        },
-      ),
+    ),
     );
   }
 }

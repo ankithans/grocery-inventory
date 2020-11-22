@@ -8,7 +8,7 @@ class TokenService with ChangeNotifier , DiagnosticableTreeMixin{
   String get getToken => token;
 
   void addToken({@required String token}){
-    token = token;
+    this.token = token;
   }
 
   void removeToken(){
