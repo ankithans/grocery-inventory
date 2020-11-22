@@ -6,6 +6,9 @@
 - [API documentation](https://documenter.getpostman.com/view/11391372/TVetcSDt)
 - [Video Explanation](https://vimeo.com/)
 
+## 📊 Flow Diagram
+<img src="https://github.com/ankithans/grocery-inventory/blob/main/abc.png">
+
 ## ❓ Problem Statement
 > When we go to the market we are often confused that if the item is needed or not. Sometimes we buy items that were already there in the home. To solve that particular problem we have created an application that queries in your home grocery invetory database and tell that if the item is their in the house or not and if available how much quantity is available. Then user can buy it accordingly.
 
