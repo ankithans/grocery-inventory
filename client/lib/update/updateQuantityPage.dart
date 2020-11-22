@@ -1,5 +1,9 @@
+import 'package:client/auth/login/tokenService.dart';
 import 'package:client/constants.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
+import 'package:provider/provider.dart';
 class UpdatePage extends StatefulWidget {
 
   final String id;
@@ -51,18 +55,6 @@ class _UpdatePageState extends State<UpdatePage> {
                 flex: 1,
                 child: Column(
                   children: [
-                    // Slider(
-                    //   value: double.parse(quantity.toString()),
-                    //   divisions: 5,
-                    //   min: 1,
-                    //   max: 100,
-                    //   label: quantity.round().toString(),
-                    //   onChanged: (value) {
-                    //     setState(() {
-                    //       quantity = int.parse(value.toString());
-                    //     });
-                    //   },
-                    // ),
                     Slider(
       value: _currentSliderValue,
       min: 0,
@@ -82,6 +74,37 @@ class _UpdatePageState extends State<UpdatePage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.edit),
+        label: Text('Update'),
+        onPressed: () async {
+          Toast.show('Updating', context);
+          try{
+            var token = context.read<TokenService>().getToken;
+            Response response = await Dio().post(
+              '$api/api/v1/grocery/quantity',
+              options: Options(
+                headers: {
+                  'x-auth-token': token,
+                }
+              ),
+              data: {
+                'gid': widget.id,
+                'quantity': this._currentSliderValue,
+              }
+            );
+            if(response.statusCode == 200){
+              Toast.show('Updated', context);
+            Navigator.pop(context);
+            }
+          }
+          catch(e){
+            Toast.show('An error occured', context);
+          }
+        },
+        backgroundColor: primaryColor,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

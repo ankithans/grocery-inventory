@@ -56,7 +56,6 @@ class _HomePageState extends State<HomePage> {
               child: Text('Camera'),
               onPressed: () async {
                 await getCameraImage();
-                Navigator.pop(context);
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
@@ -69,7 +68,6 @@ class _HomePageState extends State<HomePage> {
               child: Text('Gallery'),
               onPressed: () async {
                 await getGalleryImage();
-                Navigator.pop(context);
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
@@ -143,9 +141,12 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: primaryColor,
         onPressed: () async {
-          await getImage(_scaffoldKey.currentContext).then((value){
+          getImage(_scaffoldKey.currentContext).then((value){
             
               getItems = HomeServices().getList(context);
+              setState(() {
+                
+              });
           
           });
         },
