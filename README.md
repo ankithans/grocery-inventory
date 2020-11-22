@@ -27,9 +27,9 @@
 
 <img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-003056.jpg" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-163926.jpg" width="250" style="float:right"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250">
 
-<img src="" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250" style="float:right"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250">
+<img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-164030.jpg" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-164036.jpg" width="250" style="float:right"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250">
 
-<img src="" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250" style="float:right"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <img src="" width="250">
+<img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-164111.jpg" width="250"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/ankithans/grocery-inventory/blob/main/client/screenshots/Screenshot_20201122-164152.jpg" width="250" style="float:right">
 
 ## 👣 steps to run the project
 - clone the repo in your local machine
