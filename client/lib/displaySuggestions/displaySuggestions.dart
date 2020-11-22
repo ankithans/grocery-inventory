@@ -9,8 +9,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
-class DisplaySuggestionsPage extends StatefulWidget {
 
+class DisplaySuggestionsPage extends StatefulWidget {
   final File image;
   DisplaySuggestionsPage({@required this.image});
 
@@ -19,15 +19,15 @@ class DisplaySuggestionsPage extends StatefulWidget {
 }
 
 class _DisplaySuggestionsPageState extends State<DisplaySuggestionsPage> {
-
-  GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future suggestions;
   bool _loading = false;
   @override
   void initState() {
     super.initState();
-    suggestions = SuggestionsService().uploadPicture(context, image: widget.image);
+    suggestions =
+        SuggestionsService().uploadPicture(context, image: widget.image);
   }
 
   @override
