@@ -9,27 +9,27 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthService{
-
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn(
     scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
   );
 
-  Future signIn() async {
-
+  Future signIn(BuildContext context) async {
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+    final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleSignInAuthentication.accessToken,
       idToken: googleSignInAuthentication.idToken,
     );
 
-    final UserCredential authResult = await _auth.signInWithCredential(credential);
+    final UserCredential authResult =
+        await _auth.signInWithCredential(credential);
     final User user = authResult.user;
 
     if (user != null) {
@@ -40,20 +40,19 @@ class AuthService{
       assert(user.uid == currentUser.uid);
 
       print('signInWithGoogle succeeded: $user');
-      Response response = await Dio().post(
-        '$api/api/v1/auth',
-        data: {
-          "email": "${user.email}"
-        }
-      );
-      if(response.statusCode == 200){
+      Response response = await Dio()
+          .post('$api/api/v1/auth', data: {"email": "${user.email}"});
+      if (response.statusCode == 200) {
         var data = jsonDecode(jsonEncode(response.data).toString());
         var token = data['token'];
         SharedPreferences _sharedPref = await SharedPreferences.getInstance();
         await _sharedPref.setString('token', '$token');
+        print(_sharedPref.getString("token"));
+        context
+            .read<TokenService>()
+            .addToken(token: _sharedPref.getString("token"));
         return '$user';
-      }
-      else{
+      } else {
         return null;
       }
     }
@@ -69,5 +68,4 @@ class AuthService{
     context.read<TokenService>().removeToken();
     print("User Signed Out");
   }
-
 }

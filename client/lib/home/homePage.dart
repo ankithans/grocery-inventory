@@ -10,6 +10,7 @@ import 'package:client/widget/homePageItem.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animations/loading_animations.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -89,46 +90,63 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     getItems = HomeServices().getList(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: titleAppbar(
-        context, 
-        title: 'Home',
-        actions: [
-          FlatButton(
-            child: Icon(Icons.exit_to_app, color: backgroundColor,),
-            onPressed: () async {
-              await AuthService().signOut(context);
-              Navigator.pushReplacement(context, new MaterialPageRoute(builder: (BuildContext context) => new LoginPage()));
-            },
+      appBar: titleAppbar(context, title: 'Home', actions: [
+        FlatButton(
+          child: Icon(
+            Icons.exit_to_app,
+            color: backgroundColor,
           ),
-        ]
-      ),
+          onPressed: () async {
+            await AuthService().signOut(context);
+            Navigator.pushReplacement(
+                context,
+                new MaterialPageRoute(
+                    builder: (BuildContext context) => new LoginPage()));
+          },
+        ),
+      ]),
       body: FutureBuilder(
         future: getItems,
         builder: (context, snapshot) {
-          if(snapshot.hasData){
+          if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data['grocery'].length,
               itemBuilder: (context, index) {
                 return Hero(
                   tag: 'item${snapshot.data['grocery'][index]['_id']}',
-                                  child: HomePageItemCard(
-                    title: snapshot.data['grocery'][index]['tag'],
-                    subtitle: snapshot.data['grocery'][index]['finished'] == false ? Icon(Icons.check, color: Colors.green) : Icon(Icons.cancel_outlined, color: Colors.red,), 
-                    onPressed: (){
-                      Navigator.push(context, new MaterialPageRoute(builder: (context) => new UpdatePage(id: snapshot.data['grocery'][index]['_id'], imageUrl: snapshot.data['grocery'][index]['image'], quantity: snapshot.data['grocery'][index]['quantity'],),));
-                    }, 
-                    trailing: Icons.edit,
-                    imageUrl: snapshot.data['grocery'][index]['image']
-                  ),
+                  child: HomePageItemCard(
+                      title: snapshot.data['grocery'][index]['tag'],
+                      subtitle:
+                          snapshot.data['grocery'][index]['finished'] == false
+                              ? Icon(Icons.check, color: Colors.green)
+                              : Icon(
+                                  Icons.cancel_outlined,
+                                  color: Colors.red,
+                                ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                              builder: (context) => new UpdatePage(
+                                id: snapshot.data['grocery'][index]['_id'],
+                                imageUrl: snapshot.data['grocery'][index]
+                                    ['image'],
+                                quantity: snapshot.data['grocery'][index]
+                                    ['quantity'],
+                              ),
+                            ));
+                      },
+                      trailing: Icons.edit,
+                      imageUrl: snapshot.data['grocery'][index]['image']),
                 );
               },
             );
-          }
-          else{
+          } else {
             return Center(
               child: LoadingFlipping.square(),
             );
@@ -143,10 +161,8 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: primaryColor,
         onPressed: () async {
-          await getImage(_scaffoldKey.currentContext).then((value){
-            
-              getItems = HomeServices().getList(context);
-          
+          await getImage(_scaffoldKey.currentContext).then((value) {
+            getItems = HomeServices().getList(context);
           });
         },
       ),
