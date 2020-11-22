@@ -20,6 +20,8 @@ class DisplaySuggestionsPage extends StatefulWidget {
 
 class _DisplaySuggestionsPageState extends State<DisplaySuggestionsPage> {
 
+  GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
+
   Future suggestions;
   bool _loading = false;
   @override
@@ -31,6 +33,7 @@ class _DisplaySuggestionsPageState extends State<DisplaySuggestionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: titleAppbar(context, title: 'Choose from suggestions'),
       body: FutureBuilder(
         future: suggestions,
@@ -45,26 +48,15 @@ class _DisplaySuggestionsPageState extends State<DisplaySuggestionsPage> {
                     setState(() {
                       _loading = !_loading;
                     });
-                    var token = context.read<TokenService>().getToken;
-                    Response response = await Dio().post(
-                      '$api/api/v1/image/selectTags',
-                      options: Options(
-                        headers: {
-                          "x-auth-token": token,
-                        }
-                      ),
-                      data: {
-                        'url': snapshot.data['url'],
-                        'tag': snapshot.data['tags'][index],
-                      }
-                    );
                     setState(() {
                       _loading = !_loading;
                     });
+                    
+                    Response response = await SuggestionsService().saveSuggestion(context, snapshot, index);
+
                     if(response.statusCode == 200){
                       int i=0;
-                      Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => new HomePage()));
-                      //Navigator.pop(context);
+                      Navigator.popUntil(_scaffoldKey.currentContext, (route) => i++==1);
                     }
                   }, 
                   trailing: Icons.arrow_forward, 

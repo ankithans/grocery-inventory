@@ -5,8 +5,10 @@ import 'package:client/auth/login/login_ui.dart';
 import 'package:client/constants.dart';
 import 'package:client/displaySuggestions/displaySuggestions.dart';
 import 'package:client/home/homePageServices.dart';
+import 'package:client/widget/homePageItem.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_animations/loading_animations.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -16,6 +18,8 @@ class _HomePageState extends State<HomePage> {
 
   File image;
   final picker = ImagePicker();
+
+  Future getItems;
 
   Future getCameraImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -70,6 +74,13 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getItems = HomeServices().getList(context);
+  }
   @override
   Widget build(BuildContext context) {
     final GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -82,11 +93,35 @@ class _HomePageState extends State<HomePage> {
           FlatButton(
             child: Icon(Icons.exit_to_app, color: backgroundColor,),
             onPressed: () async {
-              await AuthService().signOut();
+              await AuthService().signOut(context);
               Navigator.pushReplacement(context, new MaterialPageRoute(builder: (BuildContext context) => new LoginPage()));
             },
           ),
         ]
+      ),
+      body: FutureBuilder(
+        future: getItems,
+        builder: (context, snapshot) {
+          if(snapshot.hasData){
+            return ListView.builder(
+              itemCount: snapshot.data['grocery'].length,
+              itemBuilder: (context, index) {
+                return HomePageItemCard(
+                  title: snapshot.data['grocery'][index]['tag'],
+                  subtitle: snapshot.data['grocery'][index]['finished'] == false ? Icon(Icons.check, color: Colors.green) : Icon(Icons.cancel_outlined, color: Colors.red,), 
+                  onPressed: (){}, 
+                  trailing: Icons.arrow_circle_down_rounded, 
+                  imageUrl: snapshot.data['grocery'][index]['image']
+                );
+              },
+            );
+          }
+          else{
+            return Center(
+              child: LoadingFlipping.square(),
+            );
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'snapPic',

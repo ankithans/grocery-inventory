@@ -1,9 +1,11 @@
 import 'dart:convert';
-
+import 'package:provider/provider.dart';
+import 'package:client/auth/login/tokenService.dart';
 import 'package:client/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -59,11 +61,12 @@ class AuthService{
     return null;
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut(BuildContext context) async {
     await googleSignIn.signOut();
     SharedPreferences _sharedPref = await SharedPreferences.getInstance();
     print(await _sharedPref.get('token'));
     await _sharedPref.clear();
+    context.read<TokenService>().removeToken();
     print("User Signed Out");
   }
 

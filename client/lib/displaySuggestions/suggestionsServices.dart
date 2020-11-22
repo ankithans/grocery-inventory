@@ -30,6 +30,8 @@ class SuggestionsService{
       data: formData,
     );
 
+    print(response.data);
+
     if (response.statusCode == 200) {
       var data = response.data;
       print(data);
@@ -40,4 +42,23 @@ class SuggestionsService{
     }
 
   }
+
+  Future saveSuggestion(BuildContext context, snapshot, index) async {
+
+    var token = context.read<TokenService>().getToken;
+                    Response response = await Dio().post(
+                      '$api/api/v1/image/selectTags',
+                      options: Options(
+                        headers: {
+                          "x-auth-token": token,
+                        }
+                      ),
+                      data: {
+                        'url': snapshot.data['url'],
+                        'tag': snapshot.data['tags'][index],
+             }
+    );
+    return response;
+  }
+
 }
