@@ -5,6 +5,7 @@ import connectDB from "./services/database";
 
 import userRoute from "./routes/user";
 import imageRoute from "./routes/image";
+import groceryRoute from "./routes/grocery";
 
 const main = async () => {
   dotenv.config();
@@ -26,6 +27,7 @@ const main = async () => {
 
   app.use("/api/v1/auth", userRoute);
   app.use("/api/v1/image", imageRoute);
+  app.use("/api/v1/grocery", groceryRoute);
 
   // port
   const PORT = process.env.PORT || 5000;

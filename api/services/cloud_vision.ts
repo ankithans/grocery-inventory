@@ -1,8 +1,6 @@
 import vision from "@google-cloud/vision";
 
 async function googleVision(image: string) {
-  // Imports the Google Cloud client library
-
   // Creates a client
   const projectId = "grocery-inventory";
   const keyFilename = "grocery-inventory.json";
@@ -11,9 +9,8 @@ async function googleVision(image: string) {
   // Performs label detection on the image file
   const [result] = await client.labelDetection(image);
 
-  const labels = result.labelAnnotations;
-  console.log("Labels:");
-  if (labels != null) labels.forEach((label) => console.log(label.description));
+  //   const labels = result.labelAnnotations;
+  //   if (labels != null) labels.forEach((label) => console.log(label.description));
   return result;
 }
 

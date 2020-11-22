@@ -1,12 +1,14 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IUser extends Document {
-  name: string;
+  email: string;
   groceries: [
     {
       image: string;
+      quantity: Number;
       finished: boolean;
-      tags: [];
+      tag: string;
+      _id: mongoose.Types.ObjectId;
     }
   ];
 }
@@ -18,9 +20,11 @@ const UserSchema: Schema = new Schema({
   },
   groceries: [
     {
+      _id: mongoose.Types.ObjectId,
       image: String,
+      quantity: Number,
       finished: Boolean,
-      tags: [],
+      tag: String,
     },
   ],
 });
