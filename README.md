@@ -1,7 +1,7 @@
 # grocery-inventory
 
 ## 🔗 Links
-- [Grocery-inventory apk](https://github.com/ankithans/help-me/releases/download/v1.0/app-armeabi-v7a-release.apk)
+- [Grocery-inventory apk](https://github.com/ankithans/help-me/)
 - [Backend API](https://grocery-invent.herokuapp.com/)
 - [API documentation](https://documenter.getpostman.com/view/11391372/TVetcSDt)
 - [Video Explanation](https://vimeo.com/)
@@ -17,9 +17,10 @@
 - using google cloud as it was the first time we used it in any project
 
 ## 💡 features
-- Google authentication
+- simple and fast google authentication
 - user can search items in their home(inventory) by clicking a picture
-- user can set item's quantity
+- user can set remaining amount of item
+- make shopping list (comming soon)
 
 
 ## 💻 samples:
@@ -41,7 +42,7 @@
 
 ## Tech Stacks & dependencies
 ##### 🤖 Backend
-- nodejs
+- node with typescript
 - mongodb
 - google vision
 - google cloud storage
