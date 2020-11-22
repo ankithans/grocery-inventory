@@ -17,7 +17,10 @@
 - using google cloud as it was the first time we used it in any project
 
 ## 💡 features
-- 
+- Google authentication
+- user can search items in their home(inventory) by clicking a picture
+- user can set item's quantity
+
 
 ## 💻 samples:
 
