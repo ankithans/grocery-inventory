@@ -4,6 +4,7 @@ import 'package:client/auth/login/tokenService.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 
 import '../constants.dart';
 
@@ -20,6 +21,9 @@ class SuggestionsService{
     var token = context.read<TokenService>().getToken;
     print('Token: $token');
 
+
+    try{
+
     Response response = await Dio().post(
       '$api/api/v1/image',
       options: Options(
@@ -32,14 +36,18 @@ class SuggestionsService{
 
     print(response.data);
 
-    if (response.statusCode == 200) {
-      var data = response.data;
-      print(data);
-      return data;
+    
+        if (response.statusCode == 200) {
+        var data = response.data;
+        print(data);
+        return data;
+      }
     }
-    else{
-      return null;
+    catch(e){
+      Toast.show('Already in inventory! No need to buy again', context);
+      Navigator.pop(context);
     }
+    
 
   }
 

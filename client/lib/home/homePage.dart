@@ -5,6 +5,7 @@ import 'package:client/auth/login/login_ui.dart';
 import 'package:client/constants.dart';
 import 'package:client/displaySuggestions/displaySuggestions.dart';
 import 'package:client/home/homePageServices.dart';
+import 'package:client/update/updateQuantityPage.dart';
 import 'package:client/widget/homePageItem.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -112,12 +113,17 @@ class _HomePageState extends State<HomePage> {
             return ListView.builder(
               itemCount: snapshot.data['grocery'].length,
               itemBuilder: (context, index) {
-                return HomePageItemCard(
-                  title: snapshot.data['grocery'][index]['tag'],
-                  subtitle: snapshot.data['grocery'][index]['finished'] == false ? Icon(Icons.check, color: Colors.green) : Icon(Icons.cancel_outlined, color: Colors.red,), 
-                  onPressed: (){}, 
-                  trailing: Icons.arrow_circle_down_rounded, 
-                  imageUrl: snapshot.data['grocery'][index]['image']
+                return Hero(
+                  tag: 'item${snapshot.data['grocery'][index]['_id']}',
+                                  child: HomePageItemCard(
+                    title: snapshot.data['grocery'][index]['tag'],
+                    subtitle: snapshot.data['grocery'][index]['finished'] == false ? Icon(Icons.check, color: Colors.green) : Icon(Icons.cancel_outlined, color: Colors.red,), 
+                    onPressed: (){
+                      Navigator.push(context, new MaterialPageRoute(builder: (context) => new UpdatePage(id: snapshot.data['grocery'][index]['_id'], imageUrl: snapshot.data['grocery'][index]['image'], quantity: snapshot.data['grocery'][index]['quantity'],),));
+                    }, 
+                    trailing: Icons.edit,
+                    imageUrl: snapshot.data['grocery'][index]['image']
+                  ),
                 );
               },
             );
@@ -136,8 +142,12 @@ class _HomePageState extends State<HomePage> {
           color: backgroundColor,
         ),
         backgroundColor: primaryColor,
-        onPressed: () {
-          getImage(_scaffoldKey.currentContext);
+        onPressed: () async {
+          await getImage(_scaffoldKey.currentContext).then((value){
+            
+              getItems = HomeServices().getList(context);
+          
+          });
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

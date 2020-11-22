@@ -10,6 +10,8 @@ class HomeServices{
 
     var token = context.read<TokenService>().getToken;
 
+    print('Token: $token');
+
     Response response = await Dio().get(
       '$api/api/v1/grocery/get',
       options: Options(
